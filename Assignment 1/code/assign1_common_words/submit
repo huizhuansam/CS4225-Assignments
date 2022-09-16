@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+# Do NOT modify this file
+
+filename=TopkCommonWords.java
+submit_path=/home/b/bhooi/cs4225/submission/assign1_common_words/
+read -p "Please input your student number in the form (in the form A___, not e___): " id
+read -r -p "Are you sure to submit as '$id'? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+  cp ./"$filename" ./"$id"
+  hdfs dfs -put -f ./"$id" $submit_path && echo "You have successfully submitted."
+  rm "$id"
+else
+  echo "Exit"
+fi

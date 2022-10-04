@@ -1,0 +1,6 @@
+NOTES TO SELF
+
+- Our bomb engineering lab is on a strict deadline to complete our project in the next month...
+- Remember to log in to the server for the weekly check in sessions! For security reasons, the server of our bomb engineering lab is STRICTLY only accessible during our weekly sessions, held on day 0, 7, etc.. We don't need to log in every week, but I'm quite sure each of our 13 members have logged in at least once.
+- I suspect boss has been monitoring our logins using the network history log?! It seems he monitors each of us based on our individual IP addresses...? I copied the network history log to this directory to figure it out, but it's too complicated, there are way too many IP addresses. The main difficulty I'm having is: I know how to filter away rows I don't want, but that's not enough; how do I filter away all the *IP addresses* that could not be the correct address...?
+- Yesterday, WL suggested (optionally) simplifying my code using the dropDuplicates() function in Spark... should take note of this function for future.

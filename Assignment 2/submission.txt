@@ -1,11 +1,17 @@
 ====== Part 1 ======
+I used the filter method provided by Spark DataFrame to filter out logs that start with 'alpha>'. 
+After which, I visually inspected the returned DataFrame, and made a guess that logs starting with '[some text]' is from the beta subsystem.
+I filtered those lines out and looked for lines which contained 'invalid user', which contains the password.
 
-(brief 1-2 line explanation of your solution here)
-
-(paste code relevant to your solution here)
+df.filter(~df.value.startswith('alpha>') & ~df.value.startswith('[') & df.value.startswith('Invalid user')).toPandas()
 
 ====== Part 2 ======
+First, I find the number of unique visitors to each destination IP address. 
+Then, I find the IP addresses who has 13 unique visitors. 
+I filter out days that are not multiples of 7. 
+Finally, I filter out IP addresses that has not been visited at least once every week.
 
-(brief 1-2 line explanation of your solution here)
-
-(paste code relevant to your solution here)
+unique_dst_visits = df.select(['src', 'dst']).dropDuplicates().groupBy('dst').count()
+thirteen_unique_visitors = unique_dst_visits.filter(unique_dst_visits['count'] == 13)
+num_weeks_visited = df.filter(df.day % 7 == 0).join(thirteen_unique_visitors, ['dst']).groupBy(['dst', 'day']).count().groupBy('dst').count()
+num_weeks_visited.filter(num_weeks_visited['count'] > 4).toPandas()
